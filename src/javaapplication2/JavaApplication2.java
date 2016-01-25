@@ -189,11 +189,15 @@ public class JavaApplication2 {
                 totLinea[0] += 1;
                 if (sCurrentLine.split("=").length > 1) {
                     int primerIgual = sCurrentLine.trim().indexOf("=");
-                    String clave = sCurrentLine.trim().substring(0, primerIgual);
-                    String valor = sCurrentLine.trim().substring(primerIgual + 1);
+                    if (!sCurrentLine.startsWith("#")) {
+                        String clave = sCurrentLine.trim().substring(0, primerIgual);
+                        String valor = sCurrentLine.trim().substring(primerIgual + 1);
 
-                    PropertieComplete p = new PropertieComplete(clave, valor);
-                    result.add(p);
+                        PropertieComplete p = new PropertieComplete(clave, valor);
+                        result.add(p);
+                    } else {
+                        pComentarios.add(sCurrentLine);
+                    }
                 } else {
                     pComentarios.add(sCurrentLine);
                 }
